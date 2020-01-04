@@ -1,5 +1,5 @@
 class Artist
-  attr_accessor :name, :song
+  attr_accessor :name
   
     @@all = []
   
@@ -38,4 +38,15 @@ class Artist
       song.artist = self
     end
   end
+  
+  def genres
+     songs.collect do|s|
+      s.genre
+
+      #binding.pry
+    end 
+    
+  end
+  
+  
 end
