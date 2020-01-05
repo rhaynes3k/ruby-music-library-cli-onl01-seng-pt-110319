@@ -40,12 +40,11 @@ class Artist
   end
   
   def genres
-     songs.collect do|s|
+     results = songs.collect do|s|
       s.genre
-
-      #binding.pry
     end 
     
+    results.uniq
   end
   
   

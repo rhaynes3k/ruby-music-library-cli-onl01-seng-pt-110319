@@ -28,4 +28,11 @@ class Genre
   def songs
     @songs
   end
+  
+  def artists
+    results = self.songs.collect do|a|
+      a.artist
+    end
+    results.uniq
+  end
 end
