@@ -6,13 +6,7 @@ module Concerns
     end
     
     def find_or_create_by_name(name)
-    i = self.find_by_name(name)
-      if i == nil
-        new_i = self.create(name)
-        new_i
-      else
-        i
-      end
+      self.find_by_name(name) || self.create(name)
     end
   
   end
