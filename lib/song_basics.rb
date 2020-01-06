@@ -41,18 +41,17 @@ class Song
     end
   end
   
-   def self.new_from_filename(filename)
-  #   #binding.pry
+  def self.new_from_filename(filename)
+    #binding.pry
     @name = filename.split("-")
     song = self.new(@name[1].strip)
-    song.artist = (Artist.find_or_create_by_name(@name[0].strip))
-    g = @name[2].split(".mp3")
-    
-    song.genre = Genre.new(g[0].strip)
     #binding.pry
-    song
+    song.artist = (Artist.find_or_create_by_name(@name[0].strip))
+    # g = @name[2].split(".mp3")
+    # g = g[0].strip
+    # song.genre = Genre.new(g)
 #binding.pry
-   end
+  end
   # def self.find_by_name(name)
   #   self.all.find do|s|
   #   s.name == name
