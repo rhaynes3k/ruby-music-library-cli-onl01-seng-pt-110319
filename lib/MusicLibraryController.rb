@@ -24,10 +24,26 @@ class MusicLibraryController
   
   def list_songs
     sng = Song.all.sort_by!{ |m| m.name}
+    sng.each_with_index {|s, i|puts "#{i+1}. #{s.artist.name} - #{s.name} - #{s.genre.name}"}
+  end
+  
+  def list_artists
+    art = Artist.all.sort_by!{ |a| a.name}
+    art.each_with_index {|a, i|puts "#{i+1}. #{a.name}"} 
+  end
+  
+  def list_genres
+    gen = Genre.all.sort_by!{ |g| g.name}
+    gen.each_with_index {|g, i|puts "#{i+1}. #{g.name}"} 
+  end
+    
+  def list_songs_by_artist
+    puts "Please enter the name of an artist:"
+    art = gets
+    sng = Song.all.collect{|s|s.artist.name == art}
     #binding.pry
-    sng.each_with_index do |s, i|
-      puts "#{i+1}. #{s.artist.name} - #{s.name} - #{s.genre.name}" 
-    end
-     #binding.pry
+    # sng = sng.sort_by!{|s|s.name}
+    # sng.each_with_index {|s, i|puts "#{i+1}. #{s.name}"}
+    #     #binding.pry
   end
 end
