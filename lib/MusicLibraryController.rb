@@ -40,10 +40,12 @@ class MusicLibraryController
   def list_songs_by_artist
     puts "Please enter the name of an artist:"
     art = gets
-    sng = Song.all.collect{|s|s.artist.name == art}
-    #binding.pry
-    # sng = sng.sort_by!{|s|s.name}
-    # sng.each_with_index {|s, i|puts "#{i+1}. #{s.name}"}
+    if artist = Artist.find_by_name(art)
+     # binding.pry
+    artist.songs.sort{|a, b| a.name <=> b.name}.each.with_index(1) do |s, i|
+      puts "#{i}. #{s.name} - #{s.genre.name}"
     #     #binding.pry
+    end
+  end
   end
 end
