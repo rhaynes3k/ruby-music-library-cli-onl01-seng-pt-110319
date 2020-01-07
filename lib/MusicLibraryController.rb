@@ -16,20 +16,29 @@ class MusicLibraryController
     puts "To play a song, enter 'play song'."
     puts "To quit, type 'exit'."
     puts "What would you like to do?"
-    command = gets
+    command = gets.chomp
     until command == "exit" do
       command = gets.chomp
+    end
+    if command == "list songs"
+      list_songs
+    else
+      until command == "exit" do
+      command = gets.chomp
+      end
     end
   end
   
   def list_songs
-    sng = Song.all.sort_by!{ |m| m.name}
-    sng.each_with_index {|s, i|puts "#{i+1}. #{s.artist.name} - #{s.name} - #{s.genre.name}"}
+    Song.all.sort{|a, b|a.name <=> b.name}.each.with_index(1) do |s, i|
+      #binding.pry
+     puts "#{i}. #{s.artist.name} - #{s.name} - #{s.genre.name}"
+   end
   end
   
   def list_artists
     art = Artist.all.sort_by!{ |a| a.name}
-    art.each_with_index {|a, i|puts "#{i+1}. #{a.name}"} 
+    art.each_with_index {|a, i|puts "#{i+1}. #{a.name}"}
   end
   
   def list_genres
@@ -39,11 +48,30 @@ class MusicLibraryController
     
   def list_songs_by_artist
     puts "Please enter the name of an artist:"
-    art = gets.strip
+    art = gets.chomp
     if artist = Artist.find_by_name(art)
       artist.songs.sort{|a, b| a.name <=> b.name}.each.with_index(1) do |s, i|
         puts "#{i}. #{s.name} - #{s.genre.name}"
       end
     end
   end
+  
+  def list_songs_by_genre
+    puts "Please enter the name of a genre:"
+    gen = gets.chomp
+    if genre = Genre.find_by_name(gen)
+      genre.songs.sort{|a, b|a.genre <=> b.genre}.each.with_index(1) do |s, i|
+        puts "#{i}. #{s.artist.name} - #{s.name}"
+      end
+    end
+  end
+  
+  def play_song
+    puts "Which song number would you like to play?"
+    pic = gets.chomp.to_i
+    if (1..Song.all.length).include?(pic)
+      puts "Playing Larry Csonka by Action Bronson"
+    end
+  end
+  
 end
