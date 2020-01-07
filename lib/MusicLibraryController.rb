@@ -8,8 +8,8 @@ class MusicLibraryController
   
   def call
     puts "Welcome to your music library!"
-    # command = gets.chomp
-    # until command == "exit" do
+     command = gets.chomp
+    # 
       puts "To list all of your songs, enter 'list songs'."
       puts "To list all of the artists in your library, enter 'list artists'."
       puts "To list all of the genres in your library, enter 'list genres'."
@@ -19,7 +19,9 @@ class MusicLibraryController
       puts "To quit, type 'exit'."
       puts "What would you like to do?"
       command = gets.chomp
-    #end
+      until command == "exit" do
+        gets.chomp
+      end
       
     # if command == "list songs"
     #   list_songs
