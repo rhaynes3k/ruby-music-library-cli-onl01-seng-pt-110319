@@ -45,9 +45,7 @@ class Artist
      results = songs.collect do|s|
       s.genre
     end 
-    
     results.uniq
   end
-  
   
 end
